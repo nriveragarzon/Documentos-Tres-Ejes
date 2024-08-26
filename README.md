@@ -75,42 +75,42 @@ C:.
 
 ### Archivos Principales
 
-- **datos.py**: _[Descripción de lo que hace el archivo datos.py]_
+- **datos.py**: Contiene el proceso de importación y transformación de datos desde Snowflake.
 
-- **descarga.py**: _[Descripción de lo que hace el archivo descarga.py]_
+- **documentos.py**: Contiene el proceso de generación de los documentos word usando los resultados obtenidos en datos.py. 
 
-- **documentos.py**: _[Descripción de lo que hace el archivo documentos.py]_
+- **descarga.py**: Combina las funciones de datos.py y documentos.py para crear el proceso los botones de descarga de la aplicación.
 
-- **estructura_proyecto.txt**: _[Descripción de lo que contiene el archivo estructura_proyecto.txt]_
+- **selectores.py**: Contiene las funciones de creación de opciones para el usuario final. 
 
-- **main.py**: _[Descripción de lo que hace el archivo main.py]_
+- **styles.css**: Archivo de estilos CSS para la personalización de la interfaz.
 
-- **requirements.txt**: _[Listado de las dependencias del proyecto, necesarias para ejecutar la aplicación]_
+- **main.py**: Script principal de la aplicación en Streamlit.
 
-- **selectores.py**: _[Descripción de lo que hace el archivo selectores.py]_
+- **estructura_proyecto.txt**: Estructura del directorio del proyecto. 
 
-- **styles.css**: _[Archivo de estilos CSS para la personalización de la interfaz]_
+- **requirements.txt**: Listado de las dependencias del proyecto, necesarias para ejecutar la aplicación.
 
 ### Directorios
 
-- **.streamlit/**: _[Carpeta que contiene configuraciones específicas de Streamlit]_
+- **.streamlit/**: Carpeta que contiene configuraciones específicas de Streamlit.
 
-  - **secrets.toml**: _[Archivo de configuración de secretos para la aplicación, como claves API y credenciales]_
+  - **secrets.toml**: Archivo de configuración de secretos para la aplicación (usuario, warehouse y contraseña).
 
-- **Insumos/**: _[Carpeta que contiene recursos gráficos utilizados en la aplicación]_
+- **Insumos/**: Carpeta que contiene recursos gráficos utilizados en la aplicación.
 
-  - **Banner.jpg**: _[Descripción de lo que representa o cómo se utiliza este banner en la aplicación]_
+  - **Banner.jpg**.
   
-  - **doc_bottom_right.png**: _[Descripción de lo que representa o cómo se utiliza esta imagen en la aplicación]_
+  - **doc_bottom_right.png**.
 
-  - **doc_top_left.png**: _[Descripción de lo que representa o cómo se utiliza esta imagen en la aplicación]_
+  - **doc_top_left.png**.
 
-  - **Footer.jpg**: _[Descripción de lo que representa o cómo se utiliza este pie de página en la aplicación]_
+  - **Footer.jpg**.
 
-  - **Logo MinCit_Mesa de trabajo 1.png**: _[Descripción del logo y su propósito en la aplicación]_
+  - **Logo MinCit_Mesa de trabajo 1.png**.
 
-  - **Logo_MP_EPDLB2.png**: _[Descripción del logo y su propósito en la aplicación]_
+  - **Logo_MP_EPDLB2.png**.
 
-  - **PRO_PRINCIPAL_HORZ_PNG.png**: _[Descripción del logo y su propósito en la aplicación]_
+  - **PRO_PRINCIPAL_HORZ_PNG.png**.
 
 
