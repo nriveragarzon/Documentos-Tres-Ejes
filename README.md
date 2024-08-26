@@ -48,8 +48,6 @@ Elija entre las siguientes opciones para empezar el proceso:
 ## Estructura del Proyecto
 
 ```plaintext
-Listado de rutas de carpetas para el volumen Windows
-El número de serie del volumen es 4CC2-E65A
 C:.
 ¦   datos.py
 ¦   descarga.py
@@ -71,4 +69,48 @@ C:.
         Logo MinCit_Mesa de trabajo 1.png
         Logo_MP_EPDLB2.png
         PRO_PRINCIPAL_HORZ_PNG.png
+```
+
+## Descripción de Archivos
+
+### Archivos Principales
+
+- **datos.py**: _[Descripción de lo que hace el archivo datos.py]_
+
+- **descarga.py**: _[Descripción de lo que hace el archivo descarga.py]_
+
+- **documentos.py**: _[Descripción de lo que hace el archivo documentos.py]_
+
+- **estructura_proyecto.txt**: _[Descripción de lo que contiene el archivo estructura_proyecto.txt]_
+
+- **main.py**: _[Descripción de lo que hace el archivo main.py]_
+
+- **requirements.txt**: _[Listado de las dependencias del proyecto, necesarias para ejecutar la aplicación]_
+
+- **selectores.py**: _[Descripción de lo que hace el archivo selectores.py]_
+
+- **styles.css**: _[Archivo de estilos CSS para la personalización de la interfaz]_
+
+### Directorios
+
+- **.streamlit/**: _[Carpeta que contiene configuraciones específicas de Streamlit]_
+
+  - **secrets.toml**: _[Archivo de configuración de secretos para la aplicación, como claves API y credenciales]_
+
+- **Insumos/**: _[Carpeta que contiene recursos gráficos utilizados en la aplicación]_
+
+  - **Banner.jpg**: _[Descripción de lo que representa o cómo se utiliza este banner en la aplicación]_
+  
+  - **doc_bottom_right.png**: _[Descripción de lo que representa o cómo se utiliza esta imagen en la aplicación]_
+
+  - **doc_top_left.png**: _[Descripción de lo que representa o cómo se utiliza esta imagen en la aplicación]_
+
+  - **Footer.jpg**: _[Descripción de lo que representa o cómo se utiliza este pie de página en la aplicación]_
+
+  - **Logo MinCit_Mesa de trabajo 1.png**: _[Descripción del logo y su propósito en la aplicación]_
+
+  - **Logo_MP_EPDLB2.png**: _[Descripción del logo y su propósito en la aplicación]_
+
+  - **PRO_PRINCIPAL_HORZ_PNG.png**: _[Descripción del logo y su propósito en la aplicación]_
+
 
