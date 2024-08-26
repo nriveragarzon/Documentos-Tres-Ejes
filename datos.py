@@ -5,9 +5,6 @@ import numpy as np
 from snowflake.connector.pandas_tools import write_pandas # [pip install "snowflake-connector-python[pandas]"]
 from snowflake.snowpark import Session
 
-# Prueba de pull request
-# Mensaje de pull. 
-
 ######################################################
 # FUNCIONES PARA OBTENER Y TRANSFORMAR DATOS TRES EJES
 ######################################################
