@@ -70,7 +70,7 @@ C:.
 ¦        Logo_MP_EPDLB2.png
 ¦        PRO_PRINCIPAL_HORZ_PNG.png
 ¦
-+---.output
++---output
 ```
 
 ## Descripción de Archivos
