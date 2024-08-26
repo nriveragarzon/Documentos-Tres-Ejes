@@ -1,4 +1,5 @@
 # Librerias
+# Solo se importan las librerías necesarias.
 from snowflake.snowpark import Session
 import pandas as pd
 import numpy as np
