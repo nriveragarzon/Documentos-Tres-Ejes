@@ -10,9 +10,8 @@ import datos as dat
 import documentos as doc
 # Descarga
 import descarga as desc
-import base64
 
-# # Configuración página web
+# Configuración página web
 st.set_page_config(page_title="Documentos Tres Ejes", page_icon = ':bar_chart:', layout="wide",  initial_sidebar_state="expanded")
 
 # Secrets
@@ -122,7 +121,7 @@ def page_portada():
     <h2>Bienvenido a la Aplicación de Documentos Tres Ejes</h2>            
     <h2>¿Qué puede hacer con esta aplicación?</h2>
     <div class="justify-text">
-        <p> Esta aplicación le permitirá generar y descargar a demanda informes detallados que resuman las cifras más relevantes de los tres ejes de negocio de ProColombia. Diseñada para ofrecer una experiencia intuitiva y eficiente, la plataforma le facilita el acceso a datos cruciales organizados según su necesidad específica: ya sea por continente, HUB, tratado de libre comercio (TLC), país, Colombia o departamento. Simplemente elija el nivel de agrupación, seleccione la opción específica que le interesa, y en cuestión de segundos podrá descargar el informe en formato Word, PDF o Excel. Optimice su análisis y toma de decisiones con documentos precisos y personalizados. </p>
+        <p> Esta aplicación le permitirá generar y descargar a demanda informes detallados que resuman las cifras más relevantes de los tres ejes de negocio de ProColombia. Diseñada para ofrecer una experiencia intuitiva y eficiente, la plataforma le facilita el acceso a datos cruciales organizados según su necesidad específica: ya sea por continente, HUB, tratado de libre comercio (TLC), país, Colombia o departamento. Simplemente elija el nivel de agrupación, seleccione la opción específica que le interesa, y en cuestión de segundos podrá descargar el informe en formato Word o Excel. Optimice su análisis y toma de decisiones con documentos precisos y personalizados. </p>
     </div>
     <h2>Instrucciones para el Uso de la Aplicación</h2>
     <div class="justify-text">
@@ -165,7 +164,7 @@ def documentos():
             <p class="indent"><strong>1. Elija el nivel de agrupación del informe que desea:</strong> Seleccione una de las opciones disponibles (Continente, HUB, TLC, País, Colombia, Departamento) para obtener un informe a nivel agregado.</p>
             <p class="indent"><strong>2. Seleccione una opción específica:</strong> Una vez haya elegido el nivel de agrupación, la aplicación le permitirá elegir un continente, HUB, TLC, país o departamento específico según la opción seleccionada en el punto 1.</p>
             <p class="indent"><strong>3. Espere unos segundos:</strong> La aplicación procesará su solicitud y después de 45 segundos le habilitará tres botones de descarga.</p>
-            <p class="indent"><strong>4. Descargue el documento:</strong> Haga clic en el botón correspondiente para descargar el archivo en el formato deseado (Word o PDF). También puede descargar un archivo Excel con los datos del informe.</p>
+            <p class="indent"><strong>4. Descargue el documento:</strong> Haga clic en el botón correspondiente para descargar el archivo en el formato Word. También puede descargar un archivo Excel con los datos del informe.</p>
     </div>
     <h2>Empiece aquí</h2>
     <div class="justify-text">
@@ -197,16 +196,16 @@ def documentos():
         if continente_elegido:
             # Generar los documentos, registrar el evento de selección y obtener los resultados
             continente_elegido_tuple = tuple([continente_elegido])
-            b64_docx, b64_pdf, b64_xlsx, file_path_docx, pdf_file_path, file_path_xlsx = desc.generar_documentos(
+            b64_docx, b64_xlsx, file_path_docx, file_path_xlsx = desc.generar_documentos(
                 agrupacion='CONTINENTES',
                 _sesion_activa=sesion_activa,
                 continentes=continente_elegido_tuple,
                 header_image_left=top_left_img,
                 footer_image=bottom_right)
             # Botones de descarga
-            if [b64_docx, b64_pdf, b64_xlsx, file_path_docx, pdf_file_path, file_path_xlsx]:
+            if [b64_docx, b64_xlsx, file_path_docx, file_path_xlsx]:
                 # Se generan los botones solo si hay archivos creados
-                desc.botones_decarga_word_pdf_xlsx(b64_docx, b64_pdf, b64_xlsx, file_path_docx, pdf_file_path, file_path_xlsx, 'CONTINENTES', sesion_activa, continente_elegido)
+                desc.botones_descarga_word_xlsx(b64_docx, b64_xlsx, file_path_docx, file_path_xlsx, 'CONTINENTES', sesion_activa, continente_elegido)
                                 
    # HUB
     if eleccion_usuario == "**HUB:** Explore un informe organizado por HUB.":
@@ -220,16 +219,16 @@ def documentos():
         if hub_elegido:
             # Generar los documentos, registrar el evento de selección y obtener los resultados
             hub_elegido_tuple = tuple([hub_elegido])
-            b64_docx, b64_pdf, b64_xlsx, file_path_docx, pdf_file_path, file_path_xlsx = desc.generar_documentos(
+            b64_docx, b64_xlsx, file_path_docx, file_path_xlsx = desc.generar_documentos(
                 agrupacion='HUBS',
                 _sesion_activa=sesion_activa,
                 hubs=hub_elegido_tuple,
                 header_image_left=top_left_img,
                 footer_image=bottom_right)
             # Botones de descarga
-            if [b64_docx, b64_pdf, b64_xlsx, file_path_docx, pdf_file_path, file_path_xlsx]:
+            if [b64_docx, b64_xlsx, file_path_docx, file_path_xlsx]:
                 # Se generan los botones solo si hay archivos creados
-                desc.botones_decarga_word_pdf_xlsx(b64_docx, b64_pdf, b64_xlsx, file_path_docx, pdf_file_path, file_path_xlsx, 'HUBS', sesion_activa, hub_elegido)
+                desc.botones_descarga_word_xlsx(b64_docx, b64_xlsx, file_path_docx, file_path_xlsx, 'HUBS', sesion_activa, hub_elegido)
             
     # TLCS
     if eleccion_usuario == '**TLC:** Explore un informe organizado por Tratado de Libre Comercio.':
@@ -243,16 +242,16 @@ def documentos():
         if tlc_elegido:
             # Generar los documentos, registrar el evento de selección y obtener los resultados
             tlc_elegido_tuple = tuple([tlc_elegido])
-            b64_docx, b64_pdf, b64_xlsx, file_path_docx, pdf_file_path, file_path_xlsx = desc.generar_documentos(
+            b64_docx, b64_xlsx, file_path_docx, file_path_xlsx = desc.generar_documentos(
                 agrupacion='TLCS',
                 _sesion_activa=sesion_activa,
                 tlcs=tlc_elegido_tuple,
                 header_image_left=top_left_img,
                 footer_image=bottom_right)
             # Botones de descarga
-            if [b64_docx, b64_pdf, b64_xlsx, file_path_docx, pdf_file_path, file_path_xlsx]:
+            if [b64_docx, b64_xlsx, file_path_docx, file_path_xlsx]:
                 # Se generan los botones solo si hay archivos creados
-                desc.botones_decarga_word_pdf_xlsx(b64_docx, b64_pdf, b64_xlsx, file_path_docx, pdf_file_path, file_path_xlsx, 'TLCS', sesion_activa, tlc_elegido)
+                desc.botones_descarga_word_xlsx(b64_docx, b64_xlsx, file_path_docx, file_path_xlsx, 'TLCS', sesion_activa, tlc_elegido)
 
     # País
     if eleccion_usuario == "**País:** Explore un informe organizado por país.":
@@ -268,29 +267,29 @@ def documentos():
             if pais_elegido:
                 # Generar los documentos, registrar el evento de selección y obtener los resultados
                 pais_elegido_tuple = tuple([pais_elegido])
-                b64_docx, b64_pdf, b64_xlsx, file_path_docx, pdf_file_path, file_path_xlsx = desc.generar_documentos(
+                b64_docx, b64_xlsx, file_path_docx, file_path_xlsx = desc.generar_documentos(
                     agrupacion='PAISES',
                     _sesion_activa=sesion_activa,
                     paises=pais_elegido_tuple,
                     header_image_left=top_left_img,
                     footer_image=bottom_right)
                 # Botones de descarga
-                if [b64_docx, b64_pdf, b64_xlsx, file_path_docx, pdf_file_path, file_path_xlsx]:
+                if [b64_docx, b64_xlsx, file_path_docx, file_path_xlsx]:
                     # Se generan los botones solo si hay archivos creados
-                    desc.botones_decarga_word_pdf_xlsx(b64_docx, b64_pdf, b64_xlsx, file_path_docx, pdf_file_path, file_path_xlsx, 'PAISES', sesion_activa, pais_elegido)
+                    desc.botones_descarga_word_xlsx(b64_docx, b64_xlsx, file_path_docx, file_path_xlsx, 'PAISES', sesion_activa, pais_elegido)
                     
     # Colombia 
     if eleccion_usuario =="**Colombia:** Explore un informe organizado de Colombia.":
         # Generar los documentos, registrar el evento de selección y obtener los resultados
-            b64_docx, b64_pdf, b64_xlsx, file_path_docx, pdf_file_path, file_path_xlsx = desc.generar_documentos(
+            b64_docx, b64_xlsx, file_path_docx, file_path_xlsx = desc.generar_documentos(
                 agrupacion='COLOMBIA',
                 _sesion_activa=sesion_activa,
                 header_image_left=top_left_img,
                 footer_image=bottom_right)
             # Botones de descarga
-            if [b64_docx, b64_pdf, b64_xlsx, file_path_docx, pdf_file_path, file_path_xlsx]:
+            if [b64_docx, b64_xlsx, file_path_docx, file_path_xlsx]:
                 # Se generan los botones solo si hay archivos creados
-                desc.botones_decarga_word_pdf_xlsx(b64_docx, b64_pdf, b64_xlsx, file_path_docx, pdf_file_path, file_path_xlsx, 'COLOMBIA', sesion_activa, 'Colombia')
+                desc.botones_descarga_word_xlsx(b64_docx, b64_xlsx, file_path_docx, file_path_xlsx, 'COLOMBIA', sesion_activa, 'Colombia')
 
     # Departamento
     if eleccion_usuario == "**Departamento:** Explore un informe organizado por departamento.":
@@ -304,16 +303,16 @@ def documentos():
         if departamento_elegido:
             # Generar los documentos, registrar el evento de selección y obtener los resultados
             departamento_elegido_tuple = tuple([departamento_elegido])
-            b64_docx, b64_pdf, b64_xlsx, file_path_docx, pdf_file_path, file_path_xlsx = desc.generar_documentos(
+            b64_docx, b64_xlsx, file_path_docx, file_path_xlsx = desc.generar_documentos(
                 agrupacion='DEPARTAMENTOS',
                 _sesion_activa=sesion_activa,
                 departamentos=departamento_elegido_tuple,
                 header_image_left=top_left_img,
                 footer_image=bottom_right)
             # Botones de descarga
-            if [b64_docx, b64_pdf, b64_xlsx, file_path_docx, pdf_file_path, file_path_xlsx]:
+            if [b64_docx, b64_xlsx, file_path_docx, file_path_xlsx]:
                 # Se generan los botones solo si hay archivos creados
-                desc.botones_decarga_word_pdf_xlsx(b64_docx, b64_pdf, b64_xlsx, file_path_docx, pdf_file_path, file_path_xlsx, 'DEPARTAMENTOS', sesion_activa, departamento_elegido)
+                desc.botones_descarga_word_xlsx(b64_docx, b64_xlsx, file_path_docx, file_path_xlsx, 'DEPARTAMENTOS', sesion_activa, departamento_elegido)
 
     # Footer
     st.image(image=footer, caption=None, use_column_width="always")

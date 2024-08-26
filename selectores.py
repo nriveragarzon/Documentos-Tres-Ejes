@@ -1,13 +1,7 @@
 # Librerias
-import os
-import json
-import snowflake.connector
 from snowflake.snowpark import Session
 import pandas as pd
 import numpy as np
-import time
-import re
-import warnings
 
 ###############################################################
 # FUNCIONES PARA GENERAR LAS OPCIONES DE ELECCIÓN PARA USUARIOS

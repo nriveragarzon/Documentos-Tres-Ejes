@@ -14,11 +14,13 @@ C:.
 ¦       secrets.toml
 ¦       
 +---Insumos
-        Banner.jpg
-        doc_bottom_right.png
-        doc_top_left.png
-        Footer.jpg
-        Logo MinCit_Mesa de trabajo 1.png
-        Logo_MP_EPDLB2.png
-        PRO_PRINCIPAL_HORZ_PNG.png
+¦        Banner.jpg
+¦        doc_bottom_right.png
+¦        doc_top_left.png
+¦        Footer.jpg
+¦        Logo MinCit_Mesa de trabajo 1.png
+¦        Logo_MP_EPDLB2.png
+¦        PRO_PRINCIPAL_HORZ_PNG.png
+¦
++---output
         

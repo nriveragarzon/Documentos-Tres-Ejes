@@ -1,12 +1,7 @@
 # Librerias
 import pandas as pd
 import numpy as np
-import time
-import re
-import warnings
-import os
-import json
-import snowflake.connector # [pip install snowflake-connector-python]
+# import snowflake.connector # [pip install snowflake-connector-python]
 from snowflake.connector.pandas_tools import write_pandas # [pip install "snowflake-connector-python[pandas]"]
 from snowflake.snowpark import Session
 

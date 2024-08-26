@@ -4,48 +4,10 @@ import datos as dat
 # Documentos 
 import documentos as doc
 # Conversión
-import pythoncom
-from docx2pdf import convert
 import io
 import base64
-import uuid
-from typing import Callable, Optional, Union
-import pandas as pd
 # Streamlit
 import streamlit as st
-import re
-
-
-
-# Función para convertir archivos DOCX a PDF
-def convert_docx_to_pdf(file_path):
-    """
-    Convierte un archivo DOCX a formato PDF.
-
-    Esta función utiliza la biblioteca docx2pdf para convertir un archivo de Word (.docx) a PDF (.pdf).
-    Inicializa y desinicializa COM (Component Object Model) para asegurarse de que la conversión se maneje correctamente en Windows.
-
-    Args:
-    - file_path (str): La ruta completa del archivo DOCX que se desea convertir.
-
-    Returns:
-    - str: La ruta completa del archivo PDF generado.
-    """
-
-    # Inicializa COM para asegurar que las operaciones de automatización de Windows funcionen correctamente
-    pythoncom.CoInitialize()
-
-    # Determina la ruta de salida del archivo PDF
-    output = file_path.replace(".docx", ".pdf")
-
-    # Realiza la conversión de DOCX a PDF
-    convert(file_path, output)
-
-    # Desinicializa COM para liberar recursos
-    pythoncom.CoUninitialize()
-
-    # Retorna la ruta del archivo PDF generado
-    return output
 
 
 # Función para insertar datos en la tabla de seguimiento
@@ -85,7 +47,7 @@ def registrar_evento(sesion_activa, tipo_evento, detalle_evento, unidad):
 def generar_documentos(agrupacion, _sesion_activa, continentes=None, paises=None, hubs=None, tlcs=None, departamentos=None, umbral=[10000], header_image_left=None, footer_image=None):
     
     """
-    Genera documentos Word y Excel, y los convierte a PDF, para la agrupación seleccionada y los pone disponibles para descarga.
+    Genera documentos Word y Excel para la agrupación seleccionada y los pone disponibles para descarga.
 
     Args:
     - agrupacion (str): Tipo de agrupación para el informe (e.g., 'CONTINENTES', 'PAISES', 'HUBS', 'TLCS', 'DEPARTAMENTOS', 'COLOMBIA').
@@ -133,8 +95,9 @@ def generar_documentos(agrupacion, _sesion_activa, continentes=None, paises=None
                                departamentos[0])
                 file_name_suffix = f"{agrupacion} - {entity_name}"
 
-            file_path_docx = f"Tres Ejes {file_name_suffix}.docx"
-            file_path_xlsx = f"Tres Ejes {file_name_suffix}.xlsx"
+            # Filepath para generar archivos
+            file_path_docx = f"output/Tres Ejes {file_name_suffix}.docx"
+            file_path_xlsx = f"output/Tres Ejes {file_name_suffix}.xlsx"
 
             # Generar el documento Word y registrar evento de selección en la base de datos
             if agrupacion == 'CONTINENTES':
@@ -162,17 +125,10 @@ def generar_documentos(agrupacion, _sesion_activa, continentes=None, paises=None
             dat.guardar_tablas_en_excel(session=_sesion_activa, agrupacion=agrupacion, continentes=continentes, paises=paises, hubs=hubs, tlcs=tlcs, departamentos=departamentos, umbral=umbral, file_path=file_path_xlsx)
             progress_bar.progress(75, text="Documento creado con exito.")
 
-            # Convertir el archivo DOCX a PDF
-            pdf_file_path = convert_docx_to_pdf(file_path_docx)
-            
             # Preparar los archivos para descarga
             # DOCX
             with open(file_path_docx, 'rb') as f:
                 doc_bytes = io.BytesIO(f.read())
-            # PDF
-            with open(pdf_file_path, 'rb') as f:
-                pdf_bytes = io.BytesIO(f.read())
-
             # EXCEL
             with open(file_path_xlsx, 'rb') as f:
                 excel_bytes = io.BytesIO(f.read())
@@ -180,10 +136,12 @@ def generar_documentos(agrupacion, _sesion_activa, continentes=None, paises=None
             # Codificar los archivos en base64
             # DOCX
             b64_docx = base64.b64encode(doc_bytes.getvalue()).decode()
-            # PDF
-            b64_pdf = base64.b64encode(pdf_bytes.getvalue()).decode()
             # EXCEL
             b64_xlsx = base64.b64encode(excel_bytes.getvalue()).decode()
+
+            # Modificar nombres y dejarlos sin output/ para un nombre más corto
+            file_path_docx = f"Tres Ejes {file_name_suffix}.docx"
+            file_path_xlsx = f"Tres Ejes {file_name_suffix}.xlsx"
 
             # Actualizar progreso al 100%
             progress_bar.progress(100, text="Proceso terminado")
@@ -199,23 +157,20 @@ def generar_documentos(agrupacion, _sesion_activa, continentes=None, paises=None
             progress_bar.empty()
     
     # Return
-    return b64_docx, b64_pdf, b64_xlsx, file_path_docx, pdf_file_path, file_path_xlsx
+    return b64_docx, b64_xlsx, file_path_docx, file_path_xlsx
 
 
 
 # Función para crear los botones de descarga
-# @st.cache_data(show_spinner=False, experimental_allow_widgets=True)
-def botones_decarga_word_pdf_xlsx(b64_docx, b64_pdf, b64_xlsx, file_path_docx, pdf_file_path, file_path_xlsx, agrupacion, _sesion_activa, unidad):
+def botones_descarga_word_xlsx(b64_docx, b64_xlsx, file_path_docx, file_path_xlsx, agrupacion, _sesion_activa, unidad):
 
     """
-    Genera botones de descarga para documentos en formatos Word, PDF y Excel, con eventos de registro.
+    Genera botones de descarga para documentos en formatos Word y Excel, con eventos de registro.
 
     Args:
     - b64_docx (str): Documento en formato Word codificado en base64.
-    - b64_pdf (str): Documento en formato PDF codificado en base64.
     - b64_xlsx (str): Documento en formato Excel codificado en base64.
     - file_path_docx (str): Nombre del archivo Word para la descarga.
-    - pdf_file_path (str): Nombre del archivo PDF para la descarga.
     - file_path_xlsx (str): Nombre del archivo Excel para la descarga.
     - agrupacion (str): Tipo de agrupación para el informe (e.g., 'CONTINENTES', 'PAISES', 'HUBS', 'TLCS', 'DEPARTAMENTOS', 'COLOMBIA').
     - _sesion_activa: Sesión activa de conexión a la base de datos.
@@ -231,32 +186,25 @@ def botones_decarga_word_pdf_xlsx(b64_docx, b64_pdf, b64_xlsx, file_path_docx, p
     # Creación de detalles de eventos:
     # Parte común 
     descripcion_evento_word = 'Descarga Word de '
-    descripcion_evento_pdf = 'Descarga PDF de '
     descripcion_evento_excel = 'Descarga Excel de '
     # Agregar final según agrupación
     if agrupacion == 'CONTINENTES':
         descripcion_evento_word += 'continente'
-        descripcion_evento_pdf += 'continente'
         descripcion_evento_excel += 'continente'
     elif agrupacion == 'PAISES':
         descripcion_evento_word += 'país'
-        descripcion_evento_pdf += 'país'
         descripcion_evento_excel += 'país'
     elif agrupacion == 'HUBS':
         descripcion_evento_word += 'HUB'
-        descripcion_evento_pdf += 'HUB'
         descripcion_evento_excel += 'HUB'
     elif agrupacion == 'TLCS':
         descripcion_evento_word += 'TLC'
-        descripcion_evento_pdf += 'TLC'
         descripcion_evento_excel += 'TLC'
     elif agrupacion == 'DEPARTAMENTOS':
         descripcion_evento_word += 'departamento'
-        descripcion_evento_pdf += 'departamento'
         descripcion_evento_excel += 'departamento'
     elif agrupacion == 'COLOMBIA':
         descripcion_evento_word += 'Colombia'
-        descripcion_evento_pdf += 'Colombia'
         descripcion_evento_excel += 'Colombia'
     else:
         raise ValueError("Agrupación no reconocida")
@@ -269,13 +217,6 @@ def botones_decarga_word_pdf_xlsx(b64_docx, b64_pdf, b64_xlsx, file_path_docx, p
                     file_name=file_path_docx, help='Presione el botón para descargar el archivo Word', 
                     mime='application/vnd.openxmlformats-officedocument.wordprocessingml.document', 
                     on_click=lambda: registrar_evento(sesion_activa=_sesion_activa, tipo_evento='Descarga', detalle_evento=descripcion_evento_word, unidad=unidad_evento),
-                    type='secondary',
-                    use_container_width=True)
-    # PDF
-    st.download_button(label='Descargar el documento en PDF', data=base64.b64decode(b64_pdf), 
-                    file_name=pdf_file_path, help='Presione el botón para descargar el archivo PDF', 
-                    mime='application/pdf', 
-                    on_click=lambda: registrar_evento(sesion_activa=_sesion_activa, tipo_evento='Descarga', detalle_evento=descripcion_evento_pdf, unidad=unidad_evento),
                     type='secondary',
                     use_container_width=True)
     # EXCEL
