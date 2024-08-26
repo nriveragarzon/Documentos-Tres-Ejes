@@ -45,3 +45,30 @@ Elija entre las siguientes opciones para empezar el proceso:
 3. **Turismo - (Fuente: Migración Colombia - Cálculos ProColombia):** La información estadística de Migración Colombia muestra la llegada de extranjeros no residentes a Colombia por país de residencia, departamento y ciudad de hospedaje. Los datos excluyen el registro de residentes venezolanos reportado por Migración Colombia, al igual que el número de colombianos residentes en el exterior o cruceristas.
 4. **Conectividad Aérea - (Fuente: OAG - Cálculos ProColombia):** Contiene información detallada sobre los vuelos nacionales en Colombia, incluyendo la aerolínea, la ciudad y el departamento de origen y destino, así como las frecuencias de los vuelos registrados. También incluye datos sobre las regiones de origen y destino y la semana de análisis de la información.
 
+## Estructura del Proyecto
+
+```plaintext
+Listado de rutas de carpetas para el volumen Windows
+El número de serie del volumen es 4CC2-E65A
+C:.
+¦   datos.py
+¦   descarga.py
+¦   documentos.py
+¦   estructura_proyecto.txt
+¦   main.py
+¦   requirements.txt
+¦   selectores.py
+¦   styles.css
+¦   
++---.streamlit
+¦       secrets.toml
+¦       
++---Insumos
+        Banner.jpg
+        doc_bottom_right.png
+        doc_top_left.png
+        Footer.jpg
+        Logo MinCit_Mesa de trabajo 1.png
+        Logo_MP_EPDLB2.png
+        PRO_PRINCIPAL_HORZ_PNG.png
+
