@@ -15,6 +15,7 @@ import descarga as desc
 st.set_page_config(page_title="Documentos Tres Ejes", page_icon = ':bar_chart:', layout="wide",  initial_sidebar_state="expanded")
 
 # Secrets
+# Eliminar el proceso de seguimiento de contraseñas: gitignore:.streamlit/secrets.toml y bash:git rm --cached .streamlit/secrets.toml
 def cargar_contraseñas(nombre_archivo):
     return st.secrets
 cargar_contraseñas(".streamlit/secrets.toml")
