@@ -4,7 +4,7 @@
 
 ### ¿Qué puede hacer con esta aplicación?
 
-Esta aplicación le permitirá generar y descargar a demanda informes detallados que resuman las cifras más relevantes de los tres ejes de negocio de ProColombia. Diseñada para ofrecer una experiencia intuitiva y eficiente, la plataforma le facilita el acceso a datos cruciales organizados según su necesidad específica: ya sea por continente, HUB, tratado de libre comercio (TLC), país, Colombia o departamento. Simplemente elija el nivel de agrupación, seleccione la opción específica que le interesa, y en cuestión de segundos podrá descargar el informe en formato Word, PDF o Excel. Optimice su análisis y toma de decisiones con documentos precisos y personalizados.
+Esta aplicación le permitirá generar y descargar a demanda informes detallados que resuman las cifras más relevantes de los tres ejes de negocio de ProColombia. Diseñada para ofrecer una experiencia intuitiva y eficiente, la plataforma le facilita el acceso a datos cruciales organizados según su necesidad específica: ya sea por continente, HUB, tratado de libre comercio (TLC), país, Colombia o departamento. Simplemente elija el nivel de agrupación, seleccione la opción específica que le interesa, y en cuestión de segundos podrá descargar el informe en formato Word o Excel. Optimice su análisis y toma de decisiones con documentos precisos y personalizados.
 
 ## Instrucciones para el Uso de la Aplicación
 
@@ -23,7 +23,7 @@ Si tiene alguna pregunta o necesita asistencia, no dude en ponerse en contacto c
 1. **Elija el nivel de agrupación del informe que desea:** Seleccione una de las opciones disponibles (Continente, HUB, TLC, País, Colombia, Departamento) para obtener un informe a nivel agregado.
 2. **Seleccione una opción específica:** Una vez haya elegido el nivel de agrupación, la aplicación le permitirá elegir un continente, HUB, TLC, país o departamento específico según la opción seleccionada en el punto 1.
 3. **Espere unos segundos:** La aplicación procesará su solicitud y después de 45 segundos le habilitará tres botones de descarga.
-4. **Descargue el documento:** Haga clic en el botón correspondiente para descargar el archivo en el formato deseado (Word o PDF). También puede descargar un archivo Excel con los datos del informe.
+4. **Descargue el documento:** Haga clic en el botón correspondiente para descargar el archivo en el formato deseado Word. También puede descargar un archivo Excel con los datos del informe.
 
 ## Empiece aquí
 
@@ -62,13 +62,15 @@ C:.
 ¦       secrets.toml
 ¦       
 +---Insumos
-        Banner.jpg
-        doc_bottom_right.png
-        doc_top_left.png
-        Footer.jpg
-        Logo MinCit_Mesa de trabajo 1.png
-        Logo_MP_EPDLB2.png
-        PRO_PRINCIPAL_HORZ_PNG.png
+¦        Banner.jpg
+¦        doc_bottom_right.png
+¦        doc_top_left.png
+¦        Footer.jpg
+¦        Logo MinCit_Mesa de trabajo 1.png
+¦        Logo_MP_EPDLB2.png
+¦        PRO_PRINCIPAL_HORZ_PNG.png
+¦
++---.output
 ```
 
 ## Descripción de Archivos
@@ -112,5 +114,4 @@ C:.
   - **Logo_MP_EPDLB2.png**.
 
   - **PRO_PRINCIPAL_HORZ_PNG.png**.
-
-
+- **output/**: Carpeta donde se guardan los archivos generados antes de que el usuario los descargue.
