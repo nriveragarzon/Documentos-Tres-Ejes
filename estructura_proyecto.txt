@@ -1,0 +1,24 @@
+Listado de rutas de carpetas para el volumen Windows
+El número de serie del volumen es 4CC2-E65A
+C:.
+¦   datos.py
+¦   descarga.py
+¦   documentos.py
+¦   estructura_proyecto.txt
+¦   main.py
+¦   requirements.txt
+¦   selectores.py
+¦   styles.css
+¦   
++---.streamlit
+¦       secrets.toml
+¦       
++---Insumos
+        Banner.jpg
+        doc_bottom_right.png
+        doc_top_left.png
+        Footer.jpg
+        Logo MinCit_Mesa de trabajo 1.png
+        Logo_MP_EPDLB2.png
+        PRO_PRINCIPAL_HORZ_PNG.png
+        
