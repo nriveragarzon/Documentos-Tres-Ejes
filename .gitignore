@@ -1,2 +1,4 @@
 # Ignorar el archivo de secretos reales
 .streamlit/secrets.toml
+output/
+__pycache__/
